@@ -29,7 +29,7 @@ class action_plugin_anonip extends DokuWiki_Action_Plugin {
             $uid = md5($ses);
         }else{
             // Use IP + Browser Data
-            $uid = auth_browseruid();
+            $uid = md5(auth_browseruid());
         }
 
         // build pseudo IPv6 (local)
