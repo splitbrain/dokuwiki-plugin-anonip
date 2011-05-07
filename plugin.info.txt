@@ -1,0 +1,7 @@
+base   anonip
+author Andreas Gohr
+email  andi@splitbrain.org
+date   2011-05-07
+name   anonip plugin
+desc   Anonymize all IP addresses
+url    http://www.dokuwiki.org/plugin:anonip
