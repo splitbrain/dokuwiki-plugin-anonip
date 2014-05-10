@@ -14,7 +14,7 @@ require_once DOKU_PLUGIN.'action.php';
 class action_plugin_anonip extends DokuWiki_Action_Plugin {
 
     public function register(Doku_Event_Handler &$controller) {
-         $controller->register_hook('DOKUWIKI_STARTED', 'BEFORE', $this, 'handle_dokuwiki_started');
+         $controller->register_hook('INIT_LANG_LOAD', 'BEFORE', $this, 'handle_dokuwiki_started');
     }
 
     public function handle_dokuwiki_started(Doku_Event &$event, $param) {
@@ -45,10 +45,6 @@ class action_plugin_anonip extends DokuWiki_Action_Plugin {
         $_SERVER['REMOTE_ADDR'] = $ip;
         if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) unset($_SERVER['HTTP_X_FORWARDED_FOR']);
         if(isset($_SERVER['HTTP_X_REAL_IP'])) unset($_SERVER['HTTP_X_REAL_IP']);
-
-        // reset dokuwiki INFO variable
-        global $INFO;
-        if(!$_SERVER['REMOTE_USER']) $INFO['client'] = $ip;
     }
 }
 
