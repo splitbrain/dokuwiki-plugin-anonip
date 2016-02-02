@@ -13,7 +13,7 @@ require_once DOKU_PLUGIN.'action.php';
 
 class action_plugin_anonip extends DokuWiki_Action_Plugin {
 
-    public function register(Doku_Event_Handler &$controller) {
+    public function register(Doku_Event_Handler $controller) {
          $controller->register_hook('INIT_LANG_LOAD', 'BEFORE', $this, 'handle_dokuwiki_started');
     }
 
