@@ -18,19 +18,13 @@ class action_plugin_anonip extends DokuWiki_Action_Plugin {
     }
 
     public function handle_dokuwiki_started(Doku_Event &$event, $param) {
-        // is the incoming IP already anonymized by the webserver?
-        if($_SERVER['REMOTE_ADDR'] == '127.0.0.1'){
-            // try to use the session ID as identifier
-            $ses = session_id();
-            if(!$ses){
-                // no session running, randomize
-                $ses = mt_rand();
-            }
-            $uid = md5($ses);
-        }else{
-            // Use IP + Browser Data
-            $uid = md5(auth_browseruid());
+        // try to use the session ID as identifier
+        $ses = session_id();
+        if (!$ses) {
+            // no session running, randomize
+            $ses = mt_rand();
         }
+        $uid = md5($ses);
 
         // build pseudo IPv6 (local)
         $ip = 'fe80:'.substr($uid,0,4).
