@@ -24,7 +24,7 @@ class action_plugin_anonip extends DokuWiki_Action_Plugin {
             // no session running, randomize
             $ses = mt_rand();
         }
-        $uid = md5($ses);
+        $uid = hash('sha256', $ses);
 
         // build pseudo IPv6 (local)
         $ip = 'fe80:'.substr($uid,0,4).
